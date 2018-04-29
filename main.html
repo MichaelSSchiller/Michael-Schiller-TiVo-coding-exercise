@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--jQuery-->
+<script src="jquery.tablesorter.min.js"></script> <!--tableSorter jQuery plugin--> <!-- http://tablesorter.com/docs/ -->
+<script src="tablesAndCharts.js"></script>
+<link rel="stylesheet" type="text/css" href="Styles.css">
+<script>
+$(document).ready(function(){
+	$("#summaryOfResults").tablesorter(); //Enable tableSorter
+
+    var dataArray = generate();
+	
+	var tbody = $('#tBody');
+	
+	var arrayLength=dataArray.length;
+	for (var i = 0; i < arrayLength; i++) {
+	
+		var dataValue=dataArray[i]
+		
+		var tr = $('<tr>').appendTo(tbody);
+		
+		//Display order that data is generated in
+		var num = i+1
+		tr.append('<td>' + num + '</td>');
+		
+		//Split date value into its smaller components 
+		var longDate = dataValue.date
+		var dateString = longDate.toString().split(' ');
+		var dayName = dateString[0];
+		var month = dateString[1];
+		var day = dateString[2];
+		var year = dateString[3];
+		
+		tr.append('<td title="'+longDate+'">' + dayName+" "+month+" "+day+", "+year+'</td>');
+        tr.append('<td>' + dataValue.name + '</td>');
+		
+		//Capitilze data.active
+		if (dataValue.active==true) {
+			active = "True";
+		} else {
+			var active = "False"
+		}
+		tr.append('<td>' + active + '</td>');
+		
+		tr.append('<td>' + dataValue.length + '</td>');
+		
+		var Tango=dataValue.data.tango
+		var shortTango = Tango.toFixed(3); //Display 3 decimals
+		tr.append('<td title="'+Tango+'">' + shortTango + '</td>');
+		
+		var India=dataValue.data.india
+		var shortIndia = India.toFixed(3); //Display 3 decimals
+		tr.append('<td title="'+India+'">' + shortIndia + '</td>');
+		
+		var Victor=dataValue.data.victor
+		tr.append('<td>' + Victor + '</td>');
+		
+		var Oscar=dataValue.data.oscar
+		tr.append('<td>' + Oscar.toLocaleString() + '</td>');
+	}
+	$('.tablesorter').trigger('update'); //Update tableSorter with dynamiclly built rows
+});
+</script>
+
+<div id="results table">
+	<table id="summaryOfResults" class="tablesorter">
+	<caption>TiVo Sample Data</caption>
+		<thead>
+			<th>Num</th>
+			<th>Date</th>
+			<th>Name</th>
+			<th>Active</th>
+			<th>Length</th>
+			<th>Tango</th>
+			<th>India</th>
+			<th>Victor</th>
+			<th>Oscar</th>
+		</thead>
+		<tbody id="tBody">
+			
+		<tbody>
+	</table>
+</div>
+
+</body>
+</html>
