@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" type="text/css" href="Styles.css">
+</head>
 
+<body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--jQuery-->
 <script src="jquery.tablesorter.min.js"></script> <!--tableSorter jQuery plugin--> <!-- http://tablesorter.com/docs/ -->
 <script src="tablesAndCharts.js"></script>
-<link rel="stylesheet" type="text/css" href="Styles.css">
+
 <script>
 $(document).ready(function(){
 	$("#summaryOfResults").tablesorter(); //Enable tableSorter
@@ -66,7 +70,7 @@ $(document).ready(function(){
 
 <div id="results table">
 	<table id="summaryOfResults" class="tablesorter">
-	<caption>TiVo Sample Data</caption>
+	<caption>Sample Data</caption>
 		<thead>
 			<th>Num</th>
 			<th>Date</th>
